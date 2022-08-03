@@ -14,7 +14,7 @@ keypoints:
 - "`git add` puts files in the staging area."
 - "`git commit` saves the staged content as a new commit in the local repository."
 - "Write commit messages that accurately describe your changes."
-- "`git log` lists the commits made to the local repository."
+- "`git log --decorate` lists the commits made to the local repository, along with whether or not they are up-to-date with any remote repository."
 ---
 
 
@@ -45,13 +45,11 @@ $ git status
 {: .language-bash}
 
 ~~~
-On branch main
-Your branch is up-to-date with 'origin/main'.
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-	README.md
-
+# On branch main
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	README.md
 nothing added to commit but untracked files present (use "git add" to track)
 ~~~
 {: .output}
@@ -71,12 +69,12 @@ $ git status
 {: .language-bash}
 
 ~~~
-On branch main
-Your branch is up-to-date with 'origin/main'.
-
-Changes to be committed:
-  (use "git restore --staged <file>..." to unstage)
-	new file:   README.md
+# On branch main
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	new file:   README.md
+#
 ~~~
 {: .output}
 
@@ -115,7 +113,7 @@ When we run `git commit`,
 Git takes everything we have told it to save by using `git add`
 and stores a copy permanently inside the special `.git` directory.
 This permanent copy is called a **[revision](reference.html#revision)**
-and its short **identifier** is `a10bd8f`.
+and its short **identifier** is `fa90884`.
 (Your revision will have different identifier.)
 
 If we run `git status` now:
@@ -123,14 +121,14 @@ If we run `git status` now:
 ~~~
 $ git status
 ~~~
-{: .language-bash}
+{: .bash}
 
 ~~~
-On branch main
-Your branch is ahead of 'origin/main' by 1 commit.
-  (use "git push" to publish your local commits)
-
-nothing to commit, working tree clean
+# On branch main
+# Your branch is ahead of 'origin/main' by 1 commit.
+#   (use "git push" to publish your local commits)
+#
+nothing to commit, working directory clean
 ~~~
 {: .output}
 
@@ -145,12 +143,14 @@ but **not yet committed**.
 `git add` puts things in this area,
 and `git commit` then copies them to long-term storage (as a commit)
 
-> ## What's The Point of the Staging Area?
+> ## What's the Point of the Staging Area?
 >
 > Why do we have this two-stage process, where we **add** files to the staging area, then create a **commit** from them?
 >
 > Among other reasons, it allows you to easily bundle together a lot of changes in one go. If you changed the name of a variable used in multiple files (e.g. from `t` to `temperature`), you'd need to change it in all your files in one go in order for it to make sense.
 > If you stored a copy of each file one-by-one you'd end up with a lot of versions of the code that didn't work - variables with different names everywhere. The **staging area** lets you bundle together all those small changes that don't work in isolation into one big change that's coherent. 
+>
+> Git does give you shortcuts to reduce **add -> commit** to a single step, but when you're starting out it's always better to make sure you know what's going in to each commit!
 {: .callout}
 
 ### Review the Log
@@ -159,9 +159,11 @@ If we want to know what we've done recently,
 we can ask Git to show us the **project's history** using `git log`:
 
 ~~~
-$ git log
+$ git log --decorate
 ~~~
 {: .language-bash}
+
+Adding `--decorate` ensures output will indicate, for each commit revision, whether it is up-to-date with its *remote* repository, if one exists (on some systems, you may find Git does not supply this information by default).
 
 ~~~
 commit fa90884ca03dcefb97e415a374ac1aacaaa94c91 (HEAD -> main)
@@ -183,7 +185,7 @@ Date:   Wed Mar 16 14:19:13 2022 +0000
 The listing for each revision includes
 
 * the **revision's full identifier** (which starts with the same characters as the short identifier printed by the `git commit` command earlier),
-* the **branch** it was created on (including whether or not it's up-to-date with any **remote versions of that branch**),
+* the **branch** it was created on (including whether or not it's up-to-date with any **remote versions of that branch** - in this case, our last README commit hasn't been pushed to the remote repo yet),
 * the revision's **author**,
 * **when** it was created,
 * the **log message** Git was given when the revision was committed.
@@ -210,15 +212,16 @@ $ git status
 {: .language-bash}
 
 ~~~
-On branch main
-Your branch is ahead of 'origin/main' by 1 commit.
-  (use "git push" to publish your local commits)
-
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-	modified:   climate_analysis.py
-
+# On branch main
+# Your branch is ahead of 'origin/main' by 1 commit.
+#   (use "git push" to publish your local commits)
+#
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#	modified:   climate_analysis.py
+#
 no changes added to commit (use "git add" and/or "git commit -a")
 ~~~
 {: .output}
@@ -258,14 +261,6 @@ index 277d6c7..d5b442d 100644
 ~~~
 {: .output}
 
-> ## Windows users note
->
-> **No newline at end of file**
-> This message is displayed because otherwise there is no way to tell the difference between a file where there is a newline at the end and one where is not. Diff has to output a newline anyway, or the result would be harder to read or process automatically.
-> This can safely be ignored, but you can avoid seeing it by leaving a blank line at the end of your file.
-{: .callout}
-
-
 The output is **cryptic** because
 it is actually a series of **commands** for tools like editors and `patch`
 telling them how **to reconstruct one file given the other**.
@@ -285,15 +280,16 @@ $ git commit -m "Add Docstring"
 {: .language-bash}
 
 ~~~
-On branch main
-Your branch is ahead of 'origin/main' by 1 commit.
-  (use "git push" to publish your local commits)
-
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-	modified:   climate_analysis.py
-
+# On branch main
+# Your branch is ahead of 'origin/main' by 1 commit.
+#   (use "git push" to publish your local commits)
+#
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#	modified:   climate_analysis.py
+#
 no changes added to commit (use "git add" and/or "git commit -a")
 ~~~
 {: .output}
@@ -422,11 +418,11 @@ $ git status
 {: .language-bash}
 
 ~~~
-On branch main
-Your branch is ahead of 'origin/main' by 3 commits.
-  (use "git push" to publish your local commits)
-
-nothing to commit, working tree clean
+# On branch main
+# Your branch is ahead of 'origin/main' by 3 commits.
+#   (use "git push" to publish your local commits)
+#
+nothing to commit, working directory clean
 ~~~
 {: .output}
 
