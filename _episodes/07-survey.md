@@ -1,6 +1,6 @@
 ---
 title: "Survey"
-slug: Lesson Title-survey
+slug: Version Control with Git-survey
 layout: page
 ---
 
