@@ -24,12 +24,18 @@ keypoints:
 
 ## Setting Up Git
 
-We're going to use Git on the command line on our remote server, so we need to connect to it first. 
+We're going to use Git on the command line on our remote server, so we need to connect to it first, so using a terminal:
 
 ~~~
 $ ssh username@servername
 ~~~
 {: .bash}
+
+> ## Don't have a GitHub Account?
+> 
+> For this lesson you'll need an account on GitHub, so if you don't have an account on GitHub, please go
+> and [create one now](https://github.com/join).
+{: .callout}
 
 The first time we use Git on a new machine, we need to configure it. We're going to set some global options, so when Git starts tracking changes to files it records who made them and how to contact them.
 
@@ -39,7 +45,7 @@ $ git config --global user.email "fsurname@university.ac.uk"
 ~~~
 {: .language-bash}
 
-(Please use your own name and the email address you used to sign up to GitHub earlier!)
+(Please use your own name and the email address you used to sign up to GitHub!)
 
 We're going to set **Nano**, a simple, minimal commaand-line text editor to be the default for when you need to edit messages.
 ~~~
