@@ -1,6 +1,6 @@
 ---
 title: "Using a Repository"
-slug: dirac-version-control-using-repository
+slug: DiRAC-version-control-using-repository
 teaching: 10
 exercises: 0
 questions:
@@ -17,61 +17,14 @@ keypoints:
 
 # Creating a Repository
 
-A **repository** is a directory that is under **version control** - it can track changes to files within it. Git also makes it easy to sync up a **local repository** on your computer (or DIRAC server) with a **remote repository** on the internet. 
-
-## Using a Template
-
-We're going to work with some pre-existing template code, that's already stored in a repository. The first thing we need to do is create our own copy of that template, which we can do on [GitHub](https://github.com). First, visit [GitHub](https://github.com), and make sure you've signed in to your account.
-
-Once you're signed in, [go to our template repository](https://github.com/Southampton-RSG-Training/dirac-version-control-template) and select **Use this template**:
-
-![Use Template]({{ site.url }}{{ site.baseurl }}/fig/02-using-repository/template-copy.png)
-
-We should get prompted to give details for what we'd like our copy of the template to be called. As this demo code is for analysing climate data, we'll name our copy of it `climate-analysis`. We also want it to be public, so anyone can see and copy our code:
-
-![Repository Details]({{ site.url }}{{ site.baseurl }}/fig/02-using-repository/template-details.png)
-
-> ## Public or Private?
-> GitHub will allow you to create private repositories, so only people you specify can access the code, but it's always best to keep your code public - especially if you're going to use it in a paper! Code that generates or analyses data is a fundamental part of your method, and if you don't include your full method in papers your work can't be reproduced, and reproducibility is key to the scientific process. **Always** keep your repositories public unless you've got a strong reason, like embargoes imposed by industrial partners.
->
-> A major advantage of this is if you leave academia, or you switch institution and forget to update the email on your GitHub account before you lose your old one, your work won't be lost forever!
-{: .callout}
-
-After a brief wait, GitHub will have created a **remote repository** - a copy of the files and their history stored on GitHub's servers. We want to copy that to our local machine, which we do using `git clone`. Click on the **code** button, and you should have a choice of ways to copy the code. Select **SSH**, then click the copy button to copy the repository's URL:
-
-![Copy Repository URL]({{ site.url }}{{ site.baseurl }}/fig/02-using-repository/repository-url.png)
-
-Now we'll download a copy of the repository to our server. First, though, just as we needed an SSH key to connect from our computer to the DIRAC server, we need an SSH key to connect from the DIRAC server to GitHub.
-
-{: .caution}
-> ## SSH vs HTTPS
-> **Make sure you select SSH!** Whilst Git supports both **HTTPS** and **SSH**, **GitHub** will only let you *download* with **HTTPS**, as it's less secure. You can check if you accidentally selected **HTTPS** with:
->
->{: .bash}
->~~~
->git remote -v
->~~~
->
->{: .output}
->~~~
->$ origin	git@github.com:yourname/climate-analysis (fetch)
->$ origin	git@github.com:yourname/climate-analysis (push)
->~~~
->
-> If you see **HTTPS**, you can fix this with:
->
->{: .bash} 
->~~~
->$ git remote set-url origin git@github.com:yourname/climate-analysis
->~~~
->
-
-
+A **repository** is a directory that is under **version control** - it can track changes to files within it. Git also makes it easy to sync up a **local repository** on your computer (or DiRAC server) with a **remote repository** on the internet.
 
 
 ## Setting up an SSH Key
 
-We've already set up an SSH key in order to access the DIRAC cluster, but that's on our *local* machine - we also need one on the DIRAC server we've connected to. We can create one on the command line as before - just go with the defaults for every option:
+In this episode we'll be creating a new repository on GitHub then downloading and using that repository on DiRAC. In order to do that, we'll need a way to gain access to our repository from the DiRAC server. Just as we needed an SSH key to connect from our computer to the DiRAC server, we need an SSH key to connect from the DiRAC server to GitHub, so let's create a new one.
+
+On our terminal connected to DiRAC, we can create one on the command line as before - just go with the defaults for every option:
 
 ~~~
 $ ssh-keygen -t rsa 
@@ -106,7 +59,7 @@ Now we've generated a key, we can head [back to GitHub](https://github.com) and 
 
 ![Add New SSH Key]({{ site.url }}{{ site.baseurl }}/fig/02-using-repository/ssh.png)
 
-We need to fill in the details. Give the key a title like "DIRAC SSH key", and then paste your **public key** into the key box - we can find it in our `~/.ssh` folder:
+We need to fill in the details. Give the key a title like "DiRAC SSH key", and then paste your **public key** into the key box - we can find it in our `~/.ssh` folder:
 
 ~~~
 $ ls ~/.ssh
@@ -133,14 +86,73 @@ ssh-rsa <SNIPPED FOR SECURITY> dc-mang1@login6a.pri.cosma7.alces.network
 **Make sure you copy the `.pub` file and not the private key!** Your private key lives on your machine and is never shared with anyone else. Then click **Add key**.
 
 
+## Using a Template
+
+Now let's create a new repository for us to work on.
+
+For convenience, we're going to work with some pre-existing template code that's already stored in a repository. The first thing we need to do is create our own copy of that template, which we can do on [GitHub](https://github.com). First, visit [GitHub](https://github.com), and make sure you've signed in to your account.
+
+Once you're signed in, [go to our template repository](https://github.com/Southampton-RSG-Training/dirac-version-control-template) and select **Use this template**:
+
+![Use Template]({{ site.url }}{{ site.baseurl }}/fig/02-using-repository/template-copy.png)
+
+We should get prompted to give details for what we'd like our copy of the template to be called. As this demo code is for analysing climate data, we'll name our copy of it `climate-analysis`. We also want it to be public, so anyone can see and copy our code:
+
+![Repository Details]({{ site.url }}{{ site.baseurl }}/fig/02-using-repository/template-details.png)
+
+> ## Public or Private?
+> GitHub will allow you to create private repositories, so only people you specify can access the code, but it's always best to keep your code public - especially if you're going to use it in a paper! Code that generates or analyses data is a fundamental part of your method, and if you don't include your full method in papers your work can't be reproduced, and reproducibility is key to the scientific process. **Always** keep your repositories public unless you've got a strong reason, like embargoes imposed by industrial partners.
+>
+> A major advantage of this is if you leave academia, or you switch institution and forget to update the email on your GitHub account before you lose your old one, your work won't be lost forever!
+{: .callout}
+
+After a brief wait, GitHub will have created a **remote repository** - a copy of the files and their history stored on GitHub's servers.
+
+
 ## Cloning the Repository
 
-We can finally clone the repository to the HPC server:
+Next, from the new GitHub repository click on the **code** button, and you should have a choice of ways to copy the code. Select **SSH**, then click the copy button to copy the repository's URL:
+
+![Copy Repository URL]({{ site.url }}{{ site.baseurl }}/fig/02-using-repository/repository-url.png)
+
+Now we'll download a copy of the repository to our server.
+
+> ## SSH vs HTTPS
+>
+> **Make sure you select SSH!** Whilst Git supports both **HTTPS** and **SSH**, **GitHub** will only let you *download* with **HTTPS**, as it's less secure.
+{: .caution}
+
+Now we have our SSH key in place and have created our new repository from the template, we can finally clone the repository to the DiRAC server:
 
 ~~~
 $ git clone git@github.com:yourname/climate-analysis.git
 ~~~
 {: .language-bash}
+
+> ## What if I Accidentally Cloned the Repository using HTTPS?
+>
+> As a note, if you've already cloned a repository you can check if you selected **HTTPS** as the access method using, e.g.:
+>
+>{: .bash}
+>~~~
+>$ cd climate-analysis
+>$ git remote -v
+>~~~
+>
+>{: .output}
+>~~~
+>origin	git@github.com:yourname/climate-analysis (fetch)
+>origin	git@github.com:yourname/climate-analysis (push)
+>~~~
+>
+> In this case, we're using SSH. If you see **HTTPS**, you can fix this with the following::
+>
+>{: .bash}
+>~~~
+>$ git remote set-url origin git@github.com:yourname/climate-analysis
+>~~~
+>
+{: .caution}
 
 ~~~
 Cloning into 'climate-analysis'...
