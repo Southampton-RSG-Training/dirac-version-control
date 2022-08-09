@@ -154,6 +154,8 @@ $ git clone git@github.com:yourname/climate-analysis.git
 >
 {: .caution}
 
+After you enter the `git clone` command, you should see:
+
 ~~~
 Cloning into 'climate-analysis'...
 The authenticity of host 'github.com (140.82.121.4)' can't be established.
