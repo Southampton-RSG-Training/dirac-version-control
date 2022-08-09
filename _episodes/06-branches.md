@@ -16,10 +16,13 @@ keypoints:
 > ## Optional Episode
 > 
 > If you don't want to do this section, [just head straight to the survey!]({{ site.url }}{{ site.baseurl }}/version-control-with-git-survey)
+{: .callout}
 
 We've seen branches mentioned a *lot* so far - mostly `main`. So what are they?
 
 A branch is a **parallel version of a repository**. It can **branch off** from a commit, contain its own set of extra commits and edits to files, then easily **merge back** into the branch it came off (or even another!).
+
+![Git Feature-branch workflow]({{ site.url }}{{ site.baseurl }}/fig/06-branching/git-feature-branch.svg){:width="60%"}
 
 ## Why Use Branches?
 
@@ -31,13 +34,13 @@ However, if you plan on **making changes to an existing code**, **collaborating 
 
 As mentioned, if you're using an existing code written by somebody else, you'll typically just download the `main` branch and use that. What if, though, the author(s) of the code want to continue working on it without the potential users downloading half-finished or untested code? They could keep all their changes local and only commit and push once a new feature has been completed and rigorously tested, but that's not particularly sustainable for large features. It could potentially take months to add a new feature (a long time to go without a backup!), and you might want to share the work-in-progress version with others to test. 
 
-The traditional way to do this is to create a **development branch (`dev` or `develop`) coming off the main branch** (`main` or `master`). The **main branch** contains tested, finished code that can be shared with others, whilst the **development branch** contains work-in-progress code. Typically you **merge** your development branch into your master branch when your work on it has been tested and is ready to share - for example, when you release a paper using it. Then you can continue working on your development branch and sharing your development code with other other members of your group.
+The traditional way to do this is to create a **development branch (`dev` or `develop`) coming off the main branch (`main` or `master`)**. The **main branch** contains tested, finished code that can be shared with others, whilst the **development branch** contains work-in-progress code. Typically you **merge** your development branch into your master branch when your work on it has been tested and is ready to share - for example, when you release a paper using it. Then you can continue working on your development branch and sharing your development code with other other members of your group.
 
 ### Making Changes to an Existing Code: `feature` branches
 
 Once you have a working code, particularly one that's being shared, you'll inevitably want to add new features. You could add them directly to your development branch - however, what happens if, mid-way through, you need to pause the feature and switch to something else as you wait for simulations to finish, new data to arrive, or similar? Instead of ending up with a mess of multiple half-finished modifications, which are impossible to evaluate independently of the other, you can instead create a new **feature branch coming off of your development branch** for each new feature. You work on each new feature or bugfix in their own  **feature branch**, and merge them back into your **development branch** once they're tested and complete. Then, as before, once you're ready to publish a paper using your new functionality you merge it all back into the **main branch**.
 
-### Collaborating with others: `feature` branches
+### Collaborating With Others: `feature` branches
 
 Feature branches also make collaborating with others far easier! Instead of stepping on each other's toes by making conflicting edits to the same files, you can simply each work on your own branch. **GitHub** offers features to help manage collaborations too, by limiting who can merge their work into a branch without approval, allowing you to set up workflows where newer team members run their changes past those with experience.
 
@@ -52,13 +55,12 @@ You can check your current branch with:
 ~~~
 git branch
 ~~~
-{.bash}
+{: .bash}
 
 ~~~
 main
 ~~~
-{.output}
-
+{: .output}
 
 
 then create a new branch with:
@@ -66,21 +68,21 @@ then create a new branch with:
 ~~~
 git branch dev
 ~~~
-{.bash}
+{: .bash}
 
 and switch to it with:
 
 ~~~
 git checkout dev
 ~~~
-{.bash}
+{: .bash}
 
 ~~~
 Switched to branch 'dev'
 ~~~
-{.output}
+{: .output}
 
-Any commits you make on this branch will exist *only* on this branch - when you use `git checkout main` to switch back to your **main branch**, they won't show up in your `git log` results! To merge the commits from another branch into your current one, you can use `git pull <other branch>`. There's a lot more to branching, which 
+Any commits you make on this branch will exist *only* on this branch - when you use `git checkout main` to switch back to your **main branch**, they won't show up in your `git log` results! To merge the commits from another branch into your current one, you can use `git pull <other branch>`. There's a lot more to branching, and we have worked examples of how to use them [in our other material](https://southampton-rsg.github.io/swc-git-novice/06-collab/index.html#introducing-branches).
 
 
 {% include links.md %}
