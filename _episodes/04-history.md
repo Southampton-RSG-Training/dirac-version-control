@@ -176,7 +176,7 @@ This is particularly handy as you can **exactly identify specific versions of th
 
 > ## Other Ways To Reference Commits
 >
-> Newer versionf of Git have some more advanced ways of referencing past commits. In place of `HEAD~1` you can use `HEAD~` or `HEAD@{1}`,
+> Newer versions of Git have some more advanced ways of referencing past commits. In place of `HEAD~1` you can use `HEAD~` or `HEAD@{1}`,
 > or you can even use text to ask more advanced questions, like `git diff HEAD@{"yesterday"}` or `git diff HEAD@{"3 months ago"}`!
 {: .callout}
 
@@ -238,7 +238,7 @@ $ cat climate_analysis.py
 ~~~
 {: .output}
 
-By default, `checkout --` restores the version of a file in the last commit. But what if the version in our last commit was wrong or broken, or we accidentally made a commit after deleting the file?
+By default, `checkout --` replaces the file with the version of it in the *staging area*. If you haven't used `git add`, that should be the same as the version in the last commit. But what if we already used `git add` on our incorrect version of a file, or we broke the file more than one commit ago?
 
 We can use `git checkout`, e.g.:
 ~~~
@@ -248,6 +248,12 @@ $ git checkout <HEAD or commit ID> climate_analysis.py
 
 > ## Modern Git
 > Newer systems have the function `git restore`, which is a shortcut for `git checkout --`. `checkout` has a *lot* of functions, and newer versions of Git simplify things by giving them new names.
+{: .callout}
+
+> ## Double Whoops
+> What if you accidentally did `git rm climate_analysis.py`? That command tells Git to *delete the file and remove it from the repository* - so it will record that the file has been deleted, then stop tracking further changes. Even if you re-make the file, it won't be tracked until you use `git add` on it again.
+>
+> If you want to undo this, you can do `git checkout HEAD climate_analysis.py`, to get the file back and start tracking it again.
 {: .callout}
 
 
