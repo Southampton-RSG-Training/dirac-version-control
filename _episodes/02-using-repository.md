@@ -55,7 +55,7 @@ The key's randomart image is:
 ~~~
 {: .output}
 
-Now we've generated a key, we can head [back to GitHub](https://github.com) and register the key there. Go to [GitHub > Settings > SSH and GPG keys > Add new](https://github.com/settings/ssh/new), and you should see this:
+Now we've generated a key, we can add this to GitHub and register the key there. First, visit [GitHub](https://github.com), and make sure you've signed in to your account. Once you're signed in, go to [GitHub > Settings > SSH and GPG keys > Add new](https://github.com/settings/ssh/new), and you should see this:
 
 ![Add New SSH Key]({{ site.url }}{{ site.baseurl }}/fig/02-using-repository/ssh.png)
 
@@ -90,9 +90,9 @@ ssh-rsa <SNIPPED FOR SECURITY> dc-mang1@login6a.pri.cosma7.alces.network
 
 Now let's create a new repository for us to work on.
 
-For convenience, we're going to work with some pre-existing template code that's already stored in a repository. The first thing we need to do is create our own copy of that template, which we can do on [GitHub](https://github.com). First, visit [GitHub](https://github.com), and make sure you've signed in to your account.
+For convenience, we're going to work with some pre-existing template code that's already stored in a repository. The first thing we need to do is create our own copy of that template, which we can do on [GitHub](https://github.com).
 
-Once you're signed in, [go to our template repository](https://github.com/Southampton-RSG-Training/dirac-version-control-template) and select **Use this template**:
+[Go to our template repository](https://github.com/Southampton-RSG-Training/dirac-version-control-template) and select **Use this template**:
 
 ![Use Template]({{ site.url }}{{ site.baseurl }}/fig/02-using-repository/template-copy.png)
 
@@ -122,7 +122,7 @@ Now we'll download a copy of the repository to our server.
 > **Make sure you select SSH!** Whilst Git supports both **HTTPS** and **SSH**, **GitHub** will only let you *download* with **HTTPS**, as it's less secure.
 {: .caution}
 
-Now we have our SSH key in place and have created our new repository from the template, we can finally clone the repository to the DiRAC server:
+We have our SSH key in place and have created our new repository from the template, so we can finally clone the repository to the DiRAC server:
 
 ~~~
 $ git clone git@github.com:yourname/climate-analysis.git
