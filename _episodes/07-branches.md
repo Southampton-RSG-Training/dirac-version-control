@@ -9,8 +9,9 @@ objectives:
 - "Understand what a branch is"
 - "Understand when you would use a branch"
 keypoints:
-- "Branches are "
-- "GitHub needs an SSH key to allow access"
+- "Branches are parallel versions of a repository"
+- "You can easily switch between branches, and merge their changes"
+- "Branches help with code sharing and collaboration"
 ---
 
 > ## Optional Episode
