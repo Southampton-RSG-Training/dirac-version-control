@@ -253,7 +253,7 @@ $ git checkout <HEAD or commit ID> climate_analysis.py
 > ## Double Whoops
 > What if you accidentally did `git rm climate_analysis.py`? That command tells Git to *delete the file and remove it from the repository* - so it will record that the file has been deleted, then stop tracking further changes. Even if you re-make the file, it won't be tracked until you use `git add` on it again.
 >
-> If you want to undo this, you can do `git checkout HEAD climate_analysis.py`, to get the file back and start tracking it again.
+> The file still exists in the *history*, though so if you want to undo this you can do `git checkout HEAD climate_analysis.py`, to get the file back and start tracking it again. Since you can retrieve any file that existed in *a* previous commit, even if you removed it from future ones, this makes it important to not commit files containing passwords or sensitive information!
 {: .callout}
 
 
