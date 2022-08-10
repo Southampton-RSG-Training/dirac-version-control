@@ -23,7 +23,7 @@ We've seen branches mentioned a *lot* so far - mostly `main`. So what are they?
 
 A branch is a **parallel version of a repository**. It can **branch off** from a commit, contain its own set of extra commits and edits to files, then easily **merge back** into the branch it came off (or even another!).
 
-![Git Feature-branch workflow]({{ site.url }}{{ site.baseurl }}/fig/06-branching/git-feature-branch.svg){:width="60%"}
+![Git Feature-branch workflow]({{ site.url }}{{ site.baseurl }}/fig/branching/git-feature-branch.svg){:width="60%"}
 
 ## Why Use Branches?
 
@@ -56,12 +56,12 @@ You can check your current branch with:
 ~~~
 git branch
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 main
 ~~~
-{: .output}
+{: .language-output}
 
 
 then create a new branch with:
@@ -69,14 +69,14 @@ then create a new branch with:
 ~~~
 git branch dev
 ~~~
-{: .bash}
+{: .language-bash}
 
 and switch to it with:
 
 ~~~
 git checkout dev
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 Switched to branch 'dev'
