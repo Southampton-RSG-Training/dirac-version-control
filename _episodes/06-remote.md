@@ -36,7 +36,7 @@ Now we can synchronise our code to the remote repository, with `git push`:
 ~~~
 $ git push
 ~~~
-{: .language-bash}
+{: .bash}
 
 ~~~
 warning: push.default is unset; its implicit value is changing in
@@ -71,12 +71,12 @@ You'll notice that, as this is an old version of Git, we've been given a warning
 ~~~
 $ git config --global push.default simple
 ~~~
-{: .language-bash}
+{: .bash}
 
 > ## What *is* a Branch, Though?
 > We're not covering them in this material, but they're very useful.
 > Branches allow you to have alternate versions of the code 'branching off' from another branch (e.g. `main`). 
-> You can try out new features in these branches without disrupting your `main` version of the code, then **merge them in** once you've finished. [We have an **Extra Episode** with a brief description of them.]({{ site.url }}{{ site.baseurl }}/dirac-version-control-branching)
+> You can try out new features in these branches without disrupting your `main` version of the code, then **merge them in** once you've finished. We have a **Stretch Episode** with a brief description of them.
 {: .callout}
 
 If we go back to the repository on GitHub, we can refresh the page and see our updates to the code:
@@ -101,7 +101,7 @@ We want to invite other people to collaborate on our code, so we'll update the `
 nano README.md
 cat README.md
 ~~~ 
-{: .language-bash}
+{: .bash}
 
 ~~~
 # Climate Analysis Toolkit
@@ -115,7 +115,7 @@ If you're interested in collaborating, email me at s.w.mangham@soton.ac.uk.
 ~~~
 git commit -am "Added collaboration info"
 ~~~ 
-{: .language-bash}
+{: .bash}
 
 ~~~
 [main 39a2c8f] Added collaboration info
@@ -148,7 +148,7 @@ Great. Now let's go back to the terminal and try pushing our local changes to th
 ~~~
 git push
 ~~~ 
-{: .language-bash}
+{: .bash}
 
 ~~~
 To git@github.com:smangham/climate-analysis
@@ -171,7 +171,7 @@ We'll need to **pull** those commits into our local repository before we can pus
 ~~~
 git pull
 ~~~ 
-{: .language-bash}
+{: .bash}
 
 ~~~
 remote: Enumerating objects: 5, done.
@@ -192,7 +192,7 @@ We have created a conflict! Both us, and our remote collaborator, both edited `R
 ~~~
 cat README.md
 ~~~ 
-{: .language-bash}
+{: .bash}
 
 ~~~
 # Climate Analysis Toolkit
@@ -222,7 +222,7 @@ We can easily fix this using `nano`, by deleting all the markers and keeping the
 nano README.md
 cat README.md
 ~~~ 
-{: .language-bash}
+{: .bash}
 
 ~~~
 # Climate Analysis Toolkit
@@ -245,7 +245,7 @@ Now we've got a fixed and finished `README.md` file, we can commit our changes, 
 ~~~
 git commit -am "Fixed merge conflict"
 ~~~ 
-{: .language-bash}
+{: .bash}
 
 ~~~
 [main 6f4df16] Fixed merge conflict
@@ -255,7 +255,7 @@ git commit -am "Fixed merge conflict"
 ~~~
 git push
 ~~~ 
-{: .language-bash}
+{: .bash}
 
 ~~~
 Counting objects: 10, done.
