@@ -14,11 +14,6 @@ keypoints:
 - "Branches help with code sharing and collaboration"
 ---
 
-> ## Optional Episode
-> 
-> If you don't want to do this section, [just head straight to the survey!]({{ site.url }}{{ site.baseurl }}/version-control-with-git-survey)
-{: .callout}
-
 We've seen branches mentioned a *lot* so far - mostly `main`. So what are they?
 
 A branch is a **parallel version of a repository**. It can **branch off** from a commit, contain its own set of extra commits and edits to files, then easily **merge back** into the branch it came off (or even another!).

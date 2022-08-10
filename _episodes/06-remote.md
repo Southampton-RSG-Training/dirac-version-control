@@ -76,7 +76,7 @@ $ git config --global push.default simple
 > ## What *is* a Branch, Though?
 > We're not covering them in this material, but they're very useful.
 > Branches allow you to have alternate versions of the code 'branching off' from another branch (e.g. `main`). 
-> You can try out new features in these branches without disrupting your `main` version of the code, then **merge them in** once you've finished. [We have an **Extra Episode** with a brief description of them.](({{ site.url }}{{ site.baseurl }}/dirac-version-control-branching)
+> You can try out new features in these branches without disrupting your `main` version of the code, then **merge them in** once you've finished. [We have an **Extra Episode** with a brief description of them.]({{ site.url }}{{ site.baseurl }}/dirac-version-control-branching)
 {: .callout}
 
 If we go back to the repository on GitHub, we can refresh the page and see our updates to the code:
